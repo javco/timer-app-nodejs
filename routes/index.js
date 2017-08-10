@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var mongoose = require('mongoose');
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'TimerApp' });
@@ -12,9 +15,11 @@ router.get('/', function(req, res, next) {
   })*/
 });
 
-router.get('/users/:id/:name', function(req, res, next) {
-  console.log(req.params, 200)
-  res.send(req.params.id, 200)
+mongoose.model('users', {name: String})()
+router.get('/users', function(req, res, next) {
+  mongoose.model('users').find(function(err, users) {
+    res.send(users);
+  });
 });
 
 module.exports = router;
