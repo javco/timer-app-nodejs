@@ -21,4 +21,10 @@ router.get('/users', function(req, res, next) {
   });
 });
 
+router.get('/times', function(req, res, next) {
+  mongoose.model('times').find(function(err, times) {
+    res.send(times);
+  });
+});
+
 module.exports = router;
