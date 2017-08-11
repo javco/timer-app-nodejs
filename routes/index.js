@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
   })*/
 });
 
-mongoose.model('users', {name: String})()
 router.get('/users', function(req, res, next) {
   mongoose.model('users').find(function(err, users) {
     res.send(users);

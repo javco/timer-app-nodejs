@@ -7,10 +7,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var mongoose = require('mongoose');
+var fs = require('fs');
 
 // Connect to mongoose
 mongoose.connect('mongodb://localhost/timerapp');
 var db = mongoose.connection;
+
+//load all files in models dir
+fs.readdirSync( __dirname + '/models' ).forEach(function(filename){
+  if( ~filename.indexOf('.js')) require(__dirname+ '/models/' + filename )
+});
 
 var index = require('./routes/index');
 //var users = require('./routes/users');
