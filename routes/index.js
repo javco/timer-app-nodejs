@@ -20,11 +20,24 @@ router.get('/users', function(req, res, next) {
     res.send(users);
   });
 });
+router.get('/user/:_id', function(req, res, next) {
+  mongoose.model('users').findById(req.params._id, function(err, users) {
+    res.send(users);
+  });
+});
 
 router.get('/times', function(req, res, next) {
   mongoose.model('times').find(function(err, times) {
     res.send(times);
   });
 });
+router.get('/times/:userId', function(req, res, next) {
+  mongoose.model('times').find(function(err, times) {
+    mongoose.model('times').populate(times, {path: 'user'}, function(err, times) {
+      res.send(times);
+    });
+  });
+});
+
 
 module.exports = router;

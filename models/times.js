@@ -2,9 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var timesSchema = new Schema({
-    start: String,
-    end: String,
-    user: String,
+    start: Date,
+    end: Date,
+    user: {
+        type: Schema.ObjectId,
+        ref: 'users',
+    }
 });
 
 mongoose.model('times', timesSchema);
