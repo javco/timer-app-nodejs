@@ -23,3 +23,18 @@ module.exports.getTaskById = function(id, callback){
 module.exports.addTask = function(task, callback){
     Task.create(task, callback);
 }
+
+// update Task
+module.exports.updateTask = function(id, task, options, callback){
+    var query = {_id: id};
+    var update = {
+        name: task.name
+    }
+    Task.findOneAndUpdate(query, update, options, callback);
+}
+
+// delete Task
+module.exports.deleteTask = function(id, callback){
+    var query = {_id: id};
+    Task.remove(query, callback);
+}

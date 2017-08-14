@@ -28,3 +28,42 @@ module.exports.getTimeById = function(id, callback){
 module.exports.addTime = function(time, callback){
     Time.create(time, callback);
 }
+
+// update Time
+module.exports.updateTime = function(id, time, options, callback){
+    var query = {_id: id};
+    var update = {
+        start: time.start,
+        end: time.end,
+        user: time.user
+    }
+    Time.findOneAndUpdate(query, update, options, callback);
+}
+
+// delete Time
+module.exports.deleteTime = function(id, callback){
+    var query = {_id: id};
+    Time.remove(query, callback);
+}
+
+// New time START
+/*module.exports.newTimeStart = function(id, time, options, callback){
+    var query = {_id: id};
+    var update = {
+        active: true,
+        start: new Date(),
+        user: time.user
+    }
+    Time.findOneAndUpdate(query, update, options, callback);
+}
+// New time STOP
+module.exports.newTimeStop = function(id, time, options, callback){
+    var query = {_id: id};
+    var update = {
+        active: false,
+        end: new Date(),
+        user: time.user
+    }
+    Time.findOneAndUpdate(query, update, options, callback);
+}*/
+

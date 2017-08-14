@@ -38,7 +38,7 @@ router.get('/api/user/:_id', function(req, res, next) {
   });
 });
 
-router.post('/api/users', function(req, res, next) {
+router.post('/api/users', function(req, res) {
   var user = req.body;
   User.addUser(user, function(err, user){
     if(err){
@@ -67,9 +67,30 @@ router.get('/api/task/:_id', function(req, res, next) {
   });
 });
 
-router.post('/api/tasks', function(req, res, next) {
+router.post('/api/tasks', function(req, res) {
   var task = req.body;
   Task.addTask(task, function(err, task){
+    if(err){
+      throw err; 
+    }
+    res.send(task);
+  });
+});
+
+router.put('/api/tasks/:_id', function(req, res) {
+  var id = req.params._id;
+  var task = req.body;
+  Task.updateTask(id, task, {}, function(err, task){
+    if(err){
+      throw err; 
+    }
+    res.send(req.body);
+  });
+});
+
+router.delete('/api/tasks/:_id', function(req, res) {
+  var id = req.params._id;
+  Task.deleteTask(id, function(err, task){
     if(err){
       throw err; 
     }
@@ -103,7 +124,7 @@ router.get('/api/time/:_id', function(req, res, next) {
   });
 });*/
 
-router.post('/api/times', function(req, res, next) {
+router.post('/api/times', function(req, res) {
   var time = req.body;
   Time.addTime(time, function(err, time){
     if(err){
@@ -112,6 +133,28 @@ router.post('/api/times', function(req, res, next) {
     res.send(time);
   });
 });
+
+router.put('/api/times/:_id', function(req, res) {
+  var id = req.params._id;
+  var time = req.body;
+  Time.updateTime(id, time, {}, function(err, time){
+    if(err){
+      throw err; 
+    }
+    res.send(req.body);
+  });
+});
+
+router.delete('/api/times/:_id', function(req, res) {
+  var id = req.params._id;
+  Time.deleteTime(id, function(err, time){
+    if(err){
+      throw err; 
+    }
+    res.send(time);
+  });
+});
+
 
 
 module.exports = router;
