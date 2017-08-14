@@ -2,6 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var timesSchema = new Schema({
+    active: {
+        type: Boolean,
+        default: false,
+    },
     start: Date,
     end: Date,
     user: {
@@ -47,23 +51,21 @@ module.exports.deleteTime = function(id, callback){
 }
 
 // New time START
-/*module.exports.newTimeStart = function(id, time, options, callback){
-    var query = {_id: id};
-    var update = {
+module.exports.newTimerStart = function(userId, callback){
+    var time = {
         active: true,
         start: new Date(),
-        user: time.user
+        user: userId
     }
-    Time.findOneAndUpdate(query, update, options, callback);
+    Time.create(time, callback);
 }
 // New time STOP
-module.exports.newTimeStop = function(id, time, options, callback){
+module.exports.newTimerStop = function(id, options, callback){
     var query = {_id: id};
     var update = {
         active: false,
-        end: new Date(),
-        user: time.user
+        end: new Date()
     }
     Time.findOneAndUpdate(query, update, options, callback);
-}*/
+}
 

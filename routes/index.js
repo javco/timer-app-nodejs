@@ -19,7 +19,10 @@ router.get('/', function(req, res, next) {
   })*/
 });
 
-/* USERS API */
+
+/**
+ *  USERS API 
+ **/
 router.get('/api/users', function(req, res, next) {
   User.getUsers(function(err, users){
     if(err){
@@ -69,7 +72,9 @@ router.delete('/api/users/:_id', function(req, res) {
   });
 });
 
-/* TASKS API */
+/**
+ *  TASKS API 
+ **/
 router.get('/api/tasks', function(req, res, next) {
   Task.getTasks(function(err, tasks){
     if(err){
@@ -119,8 +124,12 @@ router.delete('/api/tasks/:_id', function(req, res) {
   });
 });
 
-/* TIMES API */
-router.get('/api/times', function(req, res, next) {
+
+/** 
+ * TIMES API 
+ **/
+
+ router.get('/api/times', function(req, res, next) {
   Time.getTimes(function(err, times){
     if(err){
       throw err; 
@@ -173,6 +182,28 @@ router.delete('/api/times/:_id', function(req, res) {
       throw err; 
     }
     res.send(time);
+  });
+});
+
+// Start new Time
+router.post('/api/timer-start', function(req, res) {
+  var userId = '598c659d9aa64c5a941260db';
+  Time.newTimerStart(userId, function(err, userId){
+    if(err){
+      throw err; 
+    }
+    res.send(200);
+  });
+});
+
+// Stop new time
+router.post('/api/timer-stop', function(req, res) {
+  var timerId = '5991d3a96634675ff462867b';
+  Time.newTimerStop(timerId, {upsert: true}, function(err, timerId){
+    if(err){
+      throw err; 
+    }
+    res.send(200);
   });
 });
 
