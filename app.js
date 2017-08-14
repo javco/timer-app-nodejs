@@ -14,9 +14,9 @@ mongoose.connect('mongodb://localhost/timerapp');
 var db = mongoose.connection;
 
 //load all files in models dir
-fs.readdirSync( __dirname + '/models' ).forEach(function(filename){
+/*fs.readdirSync( __dirname + '/models' ).forEach(function(filename){
   if( ~filename.indexOf('.js')) require(__dirname+ '/models/' + filename )
-});
+});*/
 
 var index = require('./routes/index');
 //var users = require('./routes/users');

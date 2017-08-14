@@ -10,4 +10,15 @@ var timesSchema = new Schema({
     }
 });
 
-mongoose.model('times', timesSchema);
+var Time = module.exports = mongoose.model('Time', timesSchema);
+
+// get Times
+module.exports.getTimes = function(callback, limit){
+    Time.find(callback).limit(limit);
+}
+
+// get single Time
+module.exports.getTimeById = function(id, callback){
+    Time.findById(id, callback);
+}
+
