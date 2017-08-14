@@ -22,17 +22,24 @@ var Time = module.exports = mongoose.model('Time', timesSchema);
 module.exports.getTimes = function(callback, limit){
     Time.find(callback).limit(limit);
 }
-
+// get Times w/ Users populated
+module.exports.getTimesWithUsers = function(callback, limit){
+    Time.find(function(err, times) {
+        Time.populate(times, {path: 'user'}, callback);
+  });
+}
+// get Times filtered by User
+module.exports.getTimesForUser = function(callback, limit){
+    Time.find({user: '598c659d9aa64c5a941260db'}, callback).limit(limit);
+}
 // get single Time
 module.exports.getTimeById = function(id, callback){
     Time.findById(id, callback);
 }
-
 // add new Time
 module.exports.addTime = function(time, callback){
     Time.create(time, callback);
 }
-
 // update Time
 module.exports.updateTime = function(id, time, options, callback){
     var query = {_id: id};

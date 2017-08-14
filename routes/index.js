@@ -129,7 +129,7 @@ router.delete('/api/tasks/:_id', function(req, res) {
  * TIMES API 
  **/
 
- router.get('/api/times', function(req, res, next) {
+router.get('/api/times', function(req, res, next) {
   Time.getTimes(function(err, times){
     if(err){
       throw err; 
@@ -146,7 +146,24 @@ router.get('/api/time/:_id', function(req, res, next) {
   });
 });
 
-/*router.get('/times/:userId', function(req, res, next) {
+router.get('/api/times-users', function(req, res, next) {
+  Time.getTimesWithUsers(function(err, times){
+    if(err){
+      throw err; 
+    }
+    res.send(times);
+  });
+});
+router.get('/api/times-for-user', function(req, res, next) {
+  Time.getTimesForUser(function(err, times){
+    if(err){
+      throw err; 
+    }
+    res.send(times);
+  });
+});
+
+/*router.get('/api/times/:userId', function(req, res, next) {
   mongoose.model('times').find(function(err, times) {
     mongoose.model('times').populate(times, {path: 'user'}, function(err, times) {
       res.send(times);
