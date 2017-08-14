@@ -38,6 +38,16 @@ router.get('/api/user/:_id', function(req, res, next) {
   });
 });
 
+router.post('/api/users', function(req, res, next) {
+  var user = req.body;
+  User.addUser(user, function(err, user){
+    if(err){
+      throw err; 
+    }
+    res.send(user);
+  });
+});
+
 /* TASKS API */
 router.get('/api/tasks', function(req, res, next) {
   Task.getTasks(function(err, tasks){
@@ -47,8 +57,19 @@ router.get('/api/tasks', function(req, res, next) {
     res.send(tasks);
   });
 });
+
 router.get('/api/task/:_id', function(req, res, next) {
   Task.getTaskById(req.params._id, function(err, task){
+    if(err){
+      throw err; 
+    }
+    res.send(task);
+  });
+});
+
+router.post('/api/tasks', function(req, res, next) {
+  var task = req.body;
+  Task.addTask(task, function(err, task){
     if(err){
       throw err; 
     }
@@ -81,6 +102,16 @@ router.get('/api/time/:_id', function(req, res, next) {
     });
   });
 });*/
+
+router.post('/api/times', function(req, res, next) {
+  var time = req.body;
+  Time.addTime(time, function(err, time){
+    if(err){
+      throw err; 
+    }
+    res.send(time);
+  });
+});
 
 
 module.exports = router;

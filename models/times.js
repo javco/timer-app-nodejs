@@ -8,6 +8,8 @@ var timesSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'users',
     }
+}, {
+    versionKey: false
 });
 
 var Time = module.exports = mongoose.model('Time', timesSchema);
@@ -22,3 +24,7 @@ module.exports.getTimeById = function(id, callback){
     Time.findById(id, callback);
 }
 
+// add new Time
+module.exports.addTime = function(time, callback){
+    Time.create(time, callback);
+}
