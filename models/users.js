@@ -25,3 +25,18 @@ module.exports.getUserById = function(id, callback){
 module.exports.addUser = function(user, callback){
     User.create(user, callback);
 }
+
+// update User
+module.exports.updateUser = function(id, user, options, callback){
+    var query = {_id: id};
+    var update = {
+        name: user.name
+    }
+    User.findOneAndUpdate(query, update, options, callback);
+}
+
+// delete User
+module.exports.deleteUser = function(id, callback){
+    var query = {_id: id};
+    User.remove(query, callback);
+}

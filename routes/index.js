@@ -48,6 +48,27 @@ router.post('/api/users', function(req, res) {
   });
 });
 
+router.put('/api/users/:_id', function(req, res) {
+  var id = req.params._id;
+  var user = req.body;
+  User.updateUser(id, user, {}, function(err, user){
+    if(err){
+      throw err; 
+    }
+    res.send(req.body);
+  });
+});
+
+router.delete('/api/users/:_id', function(req, res) {
+  var id = req.params._id;
+  User.deleteUser(id, function(err, user){
+    if(err){
+      throw err; 
+    }
+    res.send(user);
+  });
+});
+
 /* TASKS API */
 router.get('/api/tasks', function(req, res, next) {
   Task.getTasks(function(err, tasks){
