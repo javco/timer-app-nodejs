@@ -26,6 +26,12 @@ router.get('/user/:_id', function(req, res, next) {
   });
 });
 
+router.get('/tasks', function(req, res, next) {
+  mongoose.model('tasks').find(function(err, tasks) {
+    res.send(tasks);
+  });
+});
+
 router.get('/times', function(req, res, next) {
   mongoose.model('times').find(function(err, times) {
     res.send(times);
