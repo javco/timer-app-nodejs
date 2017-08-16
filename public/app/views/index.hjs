@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +11,26 @@
     
     <script src='/javascripts/angular-1.6.4/angular.js'></script>
     <script src='/javascripts/angular-1.6.4/angular-route.js'></script>
+    <script src='/app/app.js'></script>
+    <script src='/app/routes.js'></script>
     
     <title>{{ title }}</title>
     
  
   </head>
-  <body>
+  <body ng-app="timerApp">
     
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
-    <p>please use /users</p>
+
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+
+    <div ng-view></div>
 
 
     <script src='/javascripts/jquery-3.2.1.min.js'></script>
     <script src='/javascripts/bootstrap/bootstrap.js'></script>
+    
   </body>
 </html>
