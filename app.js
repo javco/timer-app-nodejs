@@ -39,6 +39,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', index);
+app.use('/about', index);
+app.use('/register', index);
 //app.use('/users', users);
 
 

@@ -7,8 +7,10 @@ angular.module('userControllers', [])
 
     this.regUser = function(regData) {
         console.log('form submitted', this.regData);
-        $http.post('/api/users', this.regData);
-        //router.post('/api/users', function(req, res) {
+        $http.post('/api/users', this.regData).then(function(data){
+            console.log(data);
+        })
+        
     }
 
 });

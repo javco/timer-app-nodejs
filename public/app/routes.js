@@ -17,8 +17,7 @@ angular.module('appRoutes', ['ngRoute'])
                 controller: 'regCtrl',
                 controllerAs: 'register',
             })
-            
-            .otherwise({ redirectTo: '/' });
+            .otherwise({ redirectTo: '/about' });
         
         $locationProvider.html5Mode({
             enabled: true,
