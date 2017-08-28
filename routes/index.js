@@ -45,9 +45,11 @@ router.post('/api/users', function(req, res) {
   var user = req.body;
   User.addUser(user, function(err, user){
     if(err){
-      throw err; 
+      //throw err;
+      res.json({ success: false, message: 'user already exists!' })
     }
-    res.send(user);
+    //res.send(user);
+    res.json({ success: true, message: 'user created!' });
   });
 });
 
