@@ -1,7 +1,7 @@
 
 
-angular.module('userControllers', [])
-.controller('regCtrl', function($http, $location, $timeout){
+angular.module('userControllers', ['userServices'])
+.controller('regCtrl', function($http, $location, $timeout, User){
     
     console.log('testing registration controller');
 
@@ -13,7 +13,7 @@ angular.module('userControllers', [])
         app.loading = true;
         app.errorMsg = false;
 
-        $http.post('/api/users', this.regData).then(function(data){
+        User.create(app.regData).then(function(data){
             console.log(data);
             if(data.data.success){
                 app.loading = false;
